@@ -2,12 +2,11 @@ const playBt = document.querySelector("#play");
 const backwardBt = document.querySelector("#backwardbt");
 const forwardBt = document.querySelector("#forward");
 const audio = document.querySelector("audio");
+audio.volume = +volumeChanger.value / 100;
 const container = document.querySelector(".container");
 const progresscontainer = document.querySelector(".progress-container");
 const progressEl = document.querySelector(".progress");
 const volumeChanger = document.querySelector("#volume-Changer");
-
-audio.volume = +volumeChanger.value / 100;
 
 function pause() {
   audio.pause();
@@ -45,6 +44,6 @@ function changeTime(e) {
 playBt.addEventListener("click", muscplay);
 audio.addEventListener("timeupdate", progress);
 progresscontainer.addEventListener("click", changeTime);
-volumeChanger.addEventListener("input ", () => {
+volumeChanger.addEventListener("input", () => {
   audio.volume = +volumeChanger.value / 100;
 });
