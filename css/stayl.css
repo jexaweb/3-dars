@@ -1,37 +1,41 @@
-.container {
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", sans-serif;
+  background-color: #121212;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 30px;
+  height: 100vh;
+  color: #fff;
 }
 
-.progress-container {
-  width: 100%;
-  max-width: 400px;
-  background-color: darkgray;
-  border-radius: 10px;
-  height: 5px;
-  cursor: pointer;
-}
-.progress {
-  background-color: tomato;
-  border-radius: inherit;
-  width: 0%;
-  height: inherit;
-  transition: 0.3s;
+.container {
+  background-color: #3a2e25;
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  max-width: 380px;
+  width: 90%;
 }
 
 .cover {
-  border-radius: 50%;
-  animation: cover 10s linear infinite;
+  border-radius: 90px;
+  /* object-fit: cover; */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  animation: rotate 12s linear infinite;
   animation-play-state: paused;
 }
+
 .container.play .cover {
   animation-play-state: running;
 }
 
-@keyframes cover {
+@keyframes rotate {
   0% {
     transform: rotate(0deg);
   }
@@ -39,4 +43,79 @@
   100% {
     transform: rotate(360deg);
   }
+}
+
+#music-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #fffbe6;
+  text-align: center;
+}
+
+#volume-Changer {
+  width: 100%;
+  max-width: 220px;
+  accent-color: #ffd766;
+}
+
+.progress-and-time {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: #ccc;
+}
+
+.progress-container {
+  flex-grow: 1;
+  height: 6px;
+  background-color: #555;
+  border-radius: 6px;
+  margin: 0 10px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.progress {
+  height: 100%;
+  width: 0%;
+  background-color: #ffd766;
+  border-radius: inherit;
+  transition: width 0.3s ease;
+}
+
+button {
+  background-color: #2a2a2a;
+  border: none;
+  padding: 12px;
+  border-radius: 50%;
+  color: white;
+  font-size: 18px;
+  margin: 0 8px;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #ffd766;
+  color: #000;
+  transform: scale(1.1);
+}
+
+.time {
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  color: #ccc;
+  font-size: 0.9rem;
+}
+
+.progress-and-time:hover .time {
+  opacity: 1;
+  visibility: visible;
+  color: #ffd766;
+  transform: scale(1.1);
 }

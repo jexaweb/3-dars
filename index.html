@@ -16,12 +16,14 @@
   <body>
     <div class="container">
       <img
+        id="cover"
         class="cover"
         src="./imgs/J.Y. Park - When We Disco.jpg"
         alt=""
-        width="300"
-        height="300"
+        width="180"
+        height="180"
       />
+
       <input
         id="volume-Changer"
         type="range"
@@ -30,9 +32,14 @@
         max="100 "
         step="1"
       />
+      <h3 id="music-title">J.Y. Park - When We Disco</h3>
       <audio src="./audios/J.Y. Park - When We Disco.mp3"></audio>
-      <div class="progress-container">
-        <div class="progress"></div>
+      <div class="progress-and-time">
+        <span id="current - time" class="time">00:00</span>
+        <div class="progress-container">
+          <div class="progress"></div>
+        </div>
+        <span id="duration" class="time">00:00</span>
       </div>
       <div>
         <button id="backward"><i class="fa-solid fa-backward"></i></button>
