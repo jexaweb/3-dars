@@ -16,7 +16,7 @@ const muteBtn = document.getElementById("muteBtn");
 const laycBtn = document.getElementById("layc");
 const icon = laycBtn.querySelector("i");
 const speedButtons = document.querySelectorAll(".speed-buttons button");
-const video = document.querySelector("video");
+const body = document.querySelector("body");
 
 audio.addEventListener("loadeddata", () => {
   const duration = audio.duration;
@@ -39,6 +39,7 @@ const songs = [
   "Kim BumSoo - I Miss You ",
   "어쩌다 마주친 그대 - 미도와 파라솔 ",
 ];
+const bgColors = ["darkslategrey", "slategray", "salmon"];
 
 let currentPlayingSong = 1;
 
@@ -46,6 +47,7 @@ function changeSong(current) {
   audio.src = `../audios/${songs[current]}.mp3`;
   container.style.backgroundImage = `url('../imgs/${songs[current]}.jpg')`;
   container.src = `../videos/${songs[current]}.mp4`;
+  body.style.backgroundColor = bgColors[current];
   icon.style.color = `../css/ ${songs[current]}.color`;
   musictitle.textContent = songs[current];
   icon.classList.remove("fa-solid");

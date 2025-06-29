@@ -9,6 +9,8 @@ body {
   height: 100vh;
   color: #fff;
   flex-direction: column;
+  background-color: #000;
+  transition: background-color 0.5s ease;
 }
 a {
   text-decoration: none;
