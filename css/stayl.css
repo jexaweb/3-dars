@@ -1,7 +1,7 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: "Segoe UI", sans-serif;
+  font-family: sans-serif;
   background-color: #2a2a2a;
   display: flex;
   justify-content: center;
@@ -210,4 +210,51 @@ button:hover {
 
 .speed-buttons {
   margin-bottom: 3rem;
+}
+
+/* respsip */
+
+@media (max-width: 768px) {
+  .container {
+    padding: 18rem 1rem 2rem 1rem;
+  }
+
+  .progress-and-time {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .progress-container {
+    width: 100%;
+    margin: 1rem;
+  }
+
+  .speed-buttons button {
+    font-size: 2px;
+    padding: 5px 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  button {
+    margin: 10px;
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .speed-buttons {
+    gap: 5px;
+  }
+
+  #music-title {
+    font-size: 2px;
+  }
+
+  .container {
+    padding-top: 14rem;
+  }
+
+  .progress-and-time {
+    width: 50%;
+  }
 }
