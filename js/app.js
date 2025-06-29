@@ -12,6 +12,10 @@ const cover = document.getElementById("cover");
 const musictitle = document.getElementById("music-title");
 const durationEl = document.getElementById("duration");
 const currenttimeEl = document.getElementById("current - time");
+const muteBtn = document.getElementById("muteBtn");
+const laycBtn = document.getElementById("layc");
+const icon = laycBtn.querySelector("i");
+const speedButtons = document.querySelectorAll(".speed-buttons button");
 
 audio.addEventListener("loadeddata", () => {
   const duration = audio.duration;
@@ -20,7 +24,6 @@ audio.addEventListener("loadeddata", () => {
   let time = `${+minutes < 10 ? `${minutes.padStart(2, 0)}` : minutes}
   :${+minutes < 10 ? `${seconds.padStart(2, 0)}` : seconds}`;
   durationEl.textContent = time;
-  // currenttimeEl.textContent = time;
 });
 
 audio.addEventListener("loadedmetadata", () => {
@@ -39,8 +42,12 @@ let currentPlayingSong = 1;
 
 function changeSong(current) {
   audio.src = `../audios/${songs[current]}.mp3`;
-  cover.src = `../imgs/${songs[current]}.jpg`;
+  container.style.backgroundImage = `url('../imgs/${songs[current]}.jpg')`;
+  icon.style.color = `../css/ ${songs[current]}.color`;
   musictitle.textContent = songs[current];
+  icon.classList.remove("fa-solid");
+  icon.classList.add("fa-regular");
+  laycBtn.classList.remove("liked");
 }
 
 changeSong(currentPlayingSong);
@@ -90,19 +97,31 @@ function progress() {
   const duration = audio.duration;
   const currentTime = audio.currentTime;
 
-  const decresingTime = isNaN(duration + currentTime)
-    ? 0
-    : duration - currentTime;
-
-  const minutes = String((decresingTime - (decresingTime % 60)) / 60);
-  const seconds = String(parseInt(decresingTime % 60));
-  let time = `${+minutes < 10 ? `${minutes.padStart(2, 0)}` : minutes}
-  :${+minutes < 10 ? `${seconds.padStart(2, 0)}` : seconds}`;
-  currenttimeEl.textContent = time;
+  const minutes = String(Math.floor(currentTime / 60)).padStart(2, "0");
+  const seconds = String(Math.floor(currentTime % 60)).padStart(2, "0");
+  currenttimeEl.textContent = `${minutes}:${seconds}`;
 
   const p = (currentTime / duration) * 100;
   progressEl.style.width = `${p}%`;
 }
+
+// function progress() {
+//   const duration = audio.duration;
+//   const currentTime = audio.currentTime;
+
+//   const decresingTime = isNaN(duration + currentTime)
+//     ? 0
+//     : duration - currentTime;
+
+//   const minutes = String((decresingTime - (decresingTime % 60)) / 60);
+//   const seconds = String(parseInt(decresingTime % 60));
+//   let time = `${+minutes < 10 ? `${minutes.padStart(2, 0)}` : minutes}
+//   :${+minutes < 10 ? `${seconds.padStart(2, 0)}` : seconds}`;
+//   currenttimeEl.textContent = time;
+
+//   const p = (currentTime / duration) * 100;
+//   progressEl.style.width = `${p}%`;
+// }
 
 function changeTime(e) {
   const p = (e.offsetX / this.clientWidth) * 100;
@@ -113,11 +132,50 @@ function changeTime(e) {
 function volumechanger() {
   audio.volume = +volumeChanger.value / 100;
   volumeEl.textContent = +volumeChanger / value;
+  if (audio.volume === 0) {
+    muteBtn.innerHTML = '<i class="fa-solid fa-volume-xmark"></i>';
+  } else {
+    muteBtn.innerHTML = '<i class="fa-solid fa-volume-high"></i>';
+  }
 }
 
-// volumeChanger.addEventListener("input", () => {
-//   audio.volume = +volumeChanger.value / 100;
-// });
+let lastVolume = audio.volume;
+
+muteBtn.addEventListener("click", () => {
+  if (audio.volume > 0) {
+    lastVolume = audio.volume;
+    audio.volume = 0;
+    volumeChanger.value = 0;
+    muteBtn.innerHTML = '<i class="fa-solid fa-volume-xmark"></i>';
+  } else {
+    audio.volume = lastVolume;
+    volumeChanger.value = lastVolume * 100;
+    muteBtn.innerHTML = '<i class="fa-solid fa-volume-high"></i>';
+  }
+});
+
+laycBtn.addEventListener("click", () => {
+  laycBtn.classList.toggle("liked");
+
+  if (laycBtn.classList.contains("liked")) {
+    icon.classList.remove("fa-regular");
+    icon.classList.add("fa-solid");
+  } else {
+    icon.classList.remove("fa-solid");
+    icon.classList.add("fa-regular");
+  }
+});
+
+speedButtons.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    const speed = parseFloat(btn.dataset.speed);
+    audio.playbackRate = speed;
+
+    // Faollikni ko‘rsatish uchun
+    speedButtons.forEach((b) => b.classList.remove("active"));
+    btn.classList.add("active");
+  });
+});
 
 playBt.addEventListener("click", muscplay);
 audio.addEventListener("timeupdate", progress);
