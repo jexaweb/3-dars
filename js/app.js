@@ -171,6 +171,16 @@ laycBtn.addEventListener("click", () => {
   }
 });
 
+speedButtons.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    const speed = parseFloat(btn.dataset.speed);
+    audio.playbackRate = speed;
+
+    speedButtons.forEach((b) => b.classList.remove("active"));
+    btn.classList.add("active");
+  });
+});
+
 playBt.addEventListener("click", muscplay);
 audio.addEventListener("timeupdate", progress);
 progresscontainer.addEventListener("click", changeTime);
