@@ -16,6 +16,7 @@ const muteBtn = document.getElementById("muteBtn");
 const laycBtn = document.getElementById("layc");
 const icon = laycBtn.querySelector("i");
 const speedButtons = document.querySelectorAll(".speed-buttons button");
+const video = document.querySelector("video");
 
 audio.addEventListener("loadeddata", () => {
   const duration = audio.duration;
@@ -38,11 +39,13 @@ const songs = [
   "Kim BumSoo - I Miss You ",
   "어쩌다 마주친 그대 - 미도와 파라솔 ",
 ];
+
 let currentPlayingSong = 1;
 
 function changeSong(current) {
   audio.src = `../audios/${songs[current]}.mp3`;
   container.style.backgroundImage = `url('../imgs/${songs[current]}.jpg')`;
+  container.src = `../videos/${songs[current]}.mp4`;
   icon.style.color = `../css/ ${songs[current]}.color`;
   musictitle.textContent = songs[current];
   icon.classList.remove("fa-solid");
@@ -164,17 +167,6 @@ laycBtn.addEventListener("click", () => {
     icon.classList.remove("fa-solid");
     icon.classList.add("fa-regular");
   }
-});
-
-speedButtons.forEach((btn) => {
-  btn.addEventListener("click", () => {
-    const speed = parseFloat(btn.dataset.speed);
-    audio.playbackRate = speed;
-
-    // Faollikni ko‘rsatish uchun
-    speedButtons.forEach((b) => b.classList.remove("active"));
-    btn.classList.add("active");
-  });
 });
 
 playBt.addEventListener("click", muscplay);
