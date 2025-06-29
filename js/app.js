@@ -38,8 +38,9 @@ const songs = [
   "J.Y. Park - When We Disco",
   "Kim BumSoo - I Miss You ",
   "어쩌다 마주친 그대 - 미도와 파라솔 ",
+  "처음 그날처럼 (2003) (1)",
 ];
-const bgColors = ["darkslategrey", "slategray", "salmon"];
+const bgColors = ["darkslategrey", "slategray", "salmon", "darkgray"];
 
 let currentPlayingSong = 1;
 

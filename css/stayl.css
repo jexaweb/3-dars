@@ -18,11 +18,14 @@ a {
 .mute {
   display: flex;
 }
+
 .container {
   margin-bottom: 2rem;
   background-image: url("../imgs/J.Y.\ Park\ -\ When\ We\ Disco.jpg"),
     url("../imgs/Kim\ BumSoo\ -\ I\ Miss\ You\ .jpg"),
-    url("../imgs/어쩌다\ 마주친\ 그대\ -\ 미도와\ 파라솔\ .jpg");
+    url("../imgs/어쩌다\ 마주친\ 그대\ -\ 미도와\ 파라솔\ .jpg"),
+    url("../imgs/처음\ 그날처럼\ \(2003\)\ \(1\).jpg");
+
   background-size: 28rem;
   background-repeat: no-repeat;
 
